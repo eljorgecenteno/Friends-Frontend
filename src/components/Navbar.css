@@ -1,0 +1,43 @@
+body, h1, h2, h3, h4, h5, h6, p, ul, li {
+    margin: 0;
+    padding: 0;
+  }
+header{
+   
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    background-color: #ffff84;
+}
+
+#nav-links-wrapper{
+    display: flex;
+    align-items: center;
+justify-content: space-between;
+}
+.nav-element{
+    padding: 6px 12px;
+     font-size: 1.5vw;    
+        font-family:Arial, Helvetica, sans-serif;
+      margin-top: 5px;
+   margin-left: 20px;
+      display: flex;
+}
+
+
+#logo{
+    width: 16vw;
+    margin-left: 10%;
+ 
+}
+
+
+.selected-element{
+  padding: 6px 12px;
+  font-size: 1.5vw;
+        font-family:Arial, Helvetica, sans-serif; 
+      margin-top: 5px;
+      margin-left: 20px;
+      display: flex;
+text-decoration: underline;
+ 
+}
