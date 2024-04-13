@@ -1,5 +1,5 @@
 import React from "react";
-import "./PersonDetails.css"
+import "./PersonDetails.css";
 
 function PersonDetails({ person }) {
   const { name, age, profile_image_url, interest, motto, events, city } = person;
@@ -10,10 +10,13 @@ function PersonDetails({ person }) {
         <h2>PersonDetails</h2>
         <div>
           <div>
-            <img src={profile_image_url} className=""/>
+            <img src={profile_image_url} className="person-picture" />
           </div>
 
-          <p>{name}</p>
+          <div id="name">
+            <p>Name:</p>
+            <p>{name}</p>
+          </div>
 
           <div id="city">
             <p>City:</p>
