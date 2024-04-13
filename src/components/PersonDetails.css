@@ -16,26 +16,31 @@
 #name {
     display: flex;
     justify-content: space-between;
+    font-size: 18px;
 }
 
 #city {
     display: flex;
     justify-content: space-between;
+    font-size: 18px;
 }
 
 #age {
     display: flex;
     justify-content: space-between;
+    font-size: 18px;
 }
 
 #interests {
     display: flex;
     justify-content: space-between;
+    font-size: 18px;
 }
 
 #motto {
     display: flex;
     justify-content: space-between;
+    font-size: 18px;
 }
 
 .person-picture{
@@ -47,5 +52,6 @@
 }
 
 #header {
-    margin-top: 10px;;
+    margin-top: 10px;
+    font-size: 22px;
 }
