@@ -17,36 +17,30 @@ import { useState } from "react";
 
 function HomePage() {
   let opinions = [
-    
     {
       name: "Perro Sánchez",
       city: "Madrid",
-      opinion:
-        "Friends opened me a lot of opportunities. I was new in Madrid and did not know many people. This app really helped me to connect with new people.",
+      opinion: "Friends opened me a lot of opportunities. I was new in Madrid and did not know many people. This app really helped me to connect with new people.",
     },
     {
       name: "Omar kamal",
       city: "London",
-      opinion:
-        "I was tired of watching The Rock films on my own... I created an event and many people joined! Was so funny! I will create an event soon to see my other favourite film... Barbie! ",
+      opinion: "I was tired of watching The Rock films on my own... I created an event and many people joined! Was so funny! I will create an event soon to see my other favourite film... Barbie! ",
     },
     {
       name: "Carles Puyol",
       city: "Barcelona",
-      opinion:
-        "I didnt have anybody to share my passion in electronic music. Friends helped me to find people with my same interests in my city and now we go dancing together most weekends!",
+      opinion: "I didnt have anybody to share my passion in electronic music. Friends helped me to find people with my same interests in my city and now we go dancing together most weekends!",
     },
     {
       name: "Ilia Topuria",
       city: "Paris",
-      opinion:
-        "I had a lot of friends already in my city. But i love to connect and met new people. Friends gives the opportunity to meet really cool people in your area!",
+      opinion: "I had a lot of friends already in my city. But i love to connect and met new people. Friends gives the opportunity to meet really cool people in your area!",
     },
     {
       name: "David Brocano",
       city: "Berlin",
-      opinion:
-        "I ejoy so much going to museums with my new grop of friends! i joined an event for visiting art galleries and since them we created a group and became inseparable",
+      opinion: "I ejoy so much going to museums with my new grop of friends! i joined an event for visiting art galleries and since them we created a group and became inseparable",
     },
   ];
 
@@ -102,45 +96,43 @@ function HomePage() {
   }
 
   return (
-    
     <div id="home-page-general-container">
       <div id="home-page-1bloq">
-      <div id="home-page-text">
-        <h1 id="home-page-text-h1">Meet new people in your area</h1>
-        <Link to="/discover">
-          <button id="button-homePage">discover</button>
-        </Link>
-        <h3 className="home-page-text-h3">
-          People with your same interest are waiting to meet you!
-        </h3>
-        <br></br>
-        <h3 className="home-page-text-h3">
-          Talk to new people or join one of our events
-        </h3>
-        <br></br>
-      </div>
-      <img
-        src={photo}
-        alt="Photo of friends having fun"
-        id="homePagePhoto"
-        style={{
-          opacity: opacityActive,
-          transition: "opacity 0.5s ease-in-out",
-        }}
-      />
+        <div id="home-page-text">
+          <h1 id="home-page-text-h1">Meet new people in your area</h1>
+          <Link to="/discover">
+            <button id="button-homePage">discover</button>
+          </Link>
+          <h3 className="home-page-text-h3">People with your same interest are waiting to meet you!</h3>
+          <br></br>
+          <h3 className="home-page-text-h3">Talk to new people or join one of our events</h3>
+          <br></br>
+        </div>
+        <img
+          src={photo}
+          alt="Photo of friends having fun"
+          id="homePagePhoto"
+          style={{
+            opacity: opacityActive,
+            transition: "opacity 0.5s ease-in-out",
+          }}
+        />
       </div>
       <div id="homePage-opinions">
         {opinions.map((eachOpinion) => {
-         return (
-          <div key={eachOpinion} id="homePage-eachOpinion"> 
-          <h4 id="homePage-eachOpinion-name&city">{eachOpinion.name} , {eachOpinion.city}</h4>
-          <p id="homePage-eachOpinion-opinion">{eachOpinion.opinion}</p>
-          <img src={whiteLogo} alt="friends logo" id="logo-homepage-opinions" />
-          </div>) 
-      })}</div>
+          return (
+            <div key={eachOpinion} id="homePage-eachOpinion">
+              <h4 id="homePage-eachOpinion-name&city">
+                {eachOpinion.name} , {eachOpinion.city}
+              </h4>
+              <p id="homePage-eachOpinion-opinion">{eachOpinion.opinion}</p>
+              <img src={whiteLogo} alt="friends logo" id="logo-homepage-opinions" />
+            </div>
+          );
+        })}
+      </div>
       <div id="homepage-last-space"></div>
     </div>
-    
   );
 }
 
