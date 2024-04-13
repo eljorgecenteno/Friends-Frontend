@@ -1,0 +1,55 @@
+#eachPerson img {
+    width: 100%;
+    border-bottom: 1px solid black;
+  }
+  #eachPerson {
+    margin: 10px;
+    border: 1px solid black;
+    border-radius: 2px;
+    padding: 10px;
+    width: 250px;
+    height: 400px;
+    display: inline-block;
+    text-align: center;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
+  }
+  
+  #discover-persons-form-container{
+display: flex;
+
+font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
+}
+#discover-persons-form-container h2{
+    font-size: 20px;
+    }
+#discover-persons-container{
+    display: flex;
+   
+    margin: 3%;
+    align-items: "center"   
+    }
+
+#discover-persons-select-city{
+margin-left: 10px;
+margin-right: 60px;
+height: 30px;
+font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
+}
+#discover-persons-filter-button{
+    height: 30px;
+    width: 80px;
+    border-radius: 1px;
+    margin-left: 60px;
+margin-right: 60px;
+font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
+background-color: rgb(228, 228, 228);
+}
+
+#see-interest-discover-page{
+    margin-left: 10px;
+
+height: 30px;
+font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
+background-color: white;
+border: 1px black solid;
+}
