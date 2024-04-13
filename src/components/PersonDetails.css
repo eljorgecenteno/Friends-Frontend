@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    background-color: blanchedalmond;
+    background-color: blanchedalmond;    
     
 }
 #person-details-container {
@@ -33,7 +33,19 @@
     justify-content: space-between;
 }
 
+#motto {
+    display: flex;
+    justify-content: space-between;
+}
+
 .person-picture{
+    margin-top: 10px;
     height:50vh;
     width: 50vw;
+    border-radius: 90%;
+    
+}
+
+#header {
+    margin-top: 10px;;
 }

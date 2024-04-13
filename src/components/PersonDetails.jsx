@@ -7,7 +7,9 @@ function PersonDetails({ person }) {
   return (
     <div id="container">
       <section id="person-details-container">
-        <h2>PersonDetails</h2>
+        <h2 id="header">
+          <strong>PersonDetails</strong>
+        </h2>
         <div>
           <div>
             <img src={profile_image_url} className="person-picture" />
@@ -15,7 +17,9 @@ function PersonDetails({ person }) {
 
           <div id="name">
             <p>Name:</p>
-            <p>{name}</p>
+            <p>
+              <strong>{name}</strong>
+            </p>
           </div>
 
           <div id="city">
@@ -23,14 +27,19 @@ function PersonDetails({ person }) {
             <p>{city}</p>
           </div>
           <div id="age">
-            <p>Age</p>
+            <p>Age:</p>
             <span>{age}</span>
           </div>
           <div id="interests">
             <p>Interests:</p>
-            <p>{interest}</p>
+            <p>{interest.join(", ")}</p>
           </div>
-          <p>{motto}</p>
+          <div id="motto">
+            <p>Motto:</p>
+            <p>
+              <strong>{motto}</strong>
+            </p>
+          </div>
         </div>
       </section>
     </div>
