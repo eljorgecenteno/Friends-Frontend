@@ -1,30 +1,31 @@
 import React from "react";
+import "./PersonDetails.css"
 
 function PersonDetails({ person }) {
   const { name, age, profile_image_url, interest, motto, events, city } = person;
 
   return (
-    <div>
-      <section className="flex flex-col items-center">
+    <div id="container">
+      <section id="person-details-container">
         <h2>PersonDetails</h2>
-        <div style={{ width: "50vw" }}>
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <img src={profile_image_url} />
+        <div>
+          <div>
+            <img src={profile_image_url} className=""/>
           </div>
 
           <p>{name}</p>
 
-          <div className="flex justify-between">
+          <div id="city">
             <p>City:</p>
             <p>{city}</p>
           </div>
-          <div className="flex">
+          <div id="age">
             <p>Age</p>
             <span>{age}</span>
           </div>
-          <div style={{ width: "50%" }} className="flex gap-60">
+          <div id="interests">
             <p>Interests:</p>
-            <span>{interest}</span>
+            <p>{interest}</p>
           </div>
           <p>{motto}</p>
         </div>

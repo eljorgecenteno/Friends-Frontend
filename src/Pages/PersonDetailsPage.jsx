@@ -5,40 +5,40 @@ import { useParams } from "react-router-dom";
 import PersonDetails from "../components/PersonDetails";
 import personsService from "../../services/persons.service";
 
-const SERVER_URL="http://localhost:5010"
+const SERVER_URL = "http://localhost:5010";
 
 function PersonDetailsPage() {
   const { personId } = useParams();
   const [onePerson, setOnePerson] = useState(null);
-// where is 5173 to find? we are making a request to the database url! right?
-  
-const getPerson = () => {
-  const token = localStorage.getItem('authToken')
-    personsService.getPerson(personId)
-    .then((response) => {
-      const singlePerson = response.data;
-      setOnePerson(singlePerson);
-    })
-    .catch((error) => console.log(error));
-};
+  // where is 5173 to find? we are making a request to the database url! right?
 
-useEffect(()=> {
-  getPerson();
-}, [] )
+  const getPerson = () => {
+    const token = localStorage.getItem("authToken");
+    personsService
+      .getPerson(personId)
+      .then((response) => {
+        const singlePerson = response.data;
+        setOnePerson(singlePerson);
+      })
+      .catch((error) => console.log(error));
+  };
 
-if (onePerson === null) {
+  useEffect(() => {
+    getPerson();
+  }, []);
+
+  if (onePerson === null) {
+    return (
+      <div>
+        <div>Loading...</div>
+      </div>
+    );
+  }
+
   return (
     <div>
-      <div>Loading...</div>
+      <PersonDetails person={onePerson}></PersonDetails>
     </div>
-  )  
+  );
 }
-
-return (
-  <div>
-  <PersonDetails person={onePerson}></PersonDetails>
-  </div>
-  )
-}
-export default PersonDetailsPage
-
+export default PersonDetailsPage;

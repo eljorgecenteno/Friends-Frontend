@@ -1,0 +1,25 @@
+#container {
+    display: flex;
+    justify-content: center;
+}
+#person-details-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 34%;
+}
+
+#city {
+    display: flex;
+    justify-content: space-between;
+}
+
+#age {
+    display: flex;
+    justify-content: space-between;
+}
+
+#interests {
+    display: flex;
+    justify-content: space-between;
+}
