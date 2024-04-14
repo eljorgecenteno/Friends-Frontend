@@ -3,6 +3,7 @@ import "./DiscoverPersonsPage.css";
 import { useState, useEffect } from "react";
 import Slider from "@mui/material/Slider";
 import Box from "@mui/material/Box";
+import { Link } from "react-router-dom";
 
 function DiscoverPersonsPage() {
   const [allPersons, setAllpersons] = useState([]);
@@ -78,6 +79,7 @@ function DiscoverPersonsPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(Age)
     setInterest(e.target.checked);
     const selectedInterests = [];
     if (Chess === true) {
@@ -122,10 +124,10 @@ function DiscoverPersonsPage() {
     if (Literature === true) {
       selectedInterests.push("Literature");
     }
-    console.log(selectedInterests);
+    
     setInterest(selectedInterests);
 
-    console.log(city);
+    
   };
 
   useEffect(() => {
@@ -151,9 +153,9 @@ function DiscoverPersonsPage() {
 
         });
         setseeInterest(false)
-    console.log(filteredPersons);
+    
     setAllFilteredpersons(filteredPersons);
-  }, [interest]);
+  }, [interest, setAge]);
 
   const handleAgeChange = (event, newAge) => {
     setAge(newAge);
@@ -170,6 +172,7 @@ function DiscoverPersonsPage() {
   }
   return (
     <>
+
       <div id="discover-persons-container">
       <h2 style={{ marginRight: "40px" }}>Filter by</h2>
           <h3>Interests:</h3>
@@ -298,9 +301,10 @@ function DiscoverPersonsPage() {
                 name="cityselected"
                 onChange={(e) => setCity(e.target.value)}
                 id="discover-persons-select-city"
-                
+                defaultValue=""
+                required
               >
-                
+                <option value="" disabled hidden>Selecciona una ciudad</option>
                 <option value="London">London</option>
                 <option value="Paris">Paris</option>
                 <option value="Madrid">Madrid</option>
@@ -324,27 +328,34 @@ function DiscoverPersonsPage() {
         
          
           </div>
-     
+     <div id="eachPersonContainer">
       {allPersons &&
+     
         allFilteredPersons.map((eachPerson) => {
-          console.log(eachPerson);
+          
           return (
-            <div key={eachPerson._id} id="eachPerson">
+            <Link key={eachPerson._id} to={`/discover/${eachPerson._id}`}  id="eachPerson" >
+            <div   >
               <img
                 src={eachPerson.profile_image_url}
                 alt={`Profile image of ${eachPerson.name}`}
               />
-              <h3>{eachPerson.name}</h3>
-              <h4>{eachPerson.age}</h4>
-              <h4> {eachPerson.city}</h4>
-              <h4>{eachPerson.interest.map((eachInterest)=>{
-                return `${eachInterest} , `
+              
+              <h3 id="eachPerson-age-and-name-discover-persons-page">{eachPerson.name}, {eachPerson.age}</h3>
+            
+              <h3> {eachPerson.city}</h3>
+              <h4>{eachPerson.interest.map((eachInterest,index)=>{
+                return index === eachPerson.interest.length -1 ? `${eachInterest}. `  : `${eachInterest}, ` 
               })}</h4>
+              
               <p>{eachPerson.motto}</p>
               
             </div>
+            </Link>
           );
-        })}
+         
+        })}</div>
+         
     </>
   );
 }

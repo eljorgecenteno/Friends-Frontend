@@ -1,17 +1,24 @@
 #eachPerson img {
-    width: 100%;
+    width: 300px;
+    height: 300px;
     border-bottom: 1px solid black;
+    border-radius: 3px;
   }
   #eachPerson {
-    margin: 10px;
-    border: 1px solid black;
+   
+    margin-bottom: 10px;
+    border: 2px solid black;
     border-radius: 2px;
-    padding: 10px;
-    width: 250px;
-    height: 400px;
-    display: inline-block;
+    width: 300px;
+    height: 500px;
+    margin-bottom: 30px;
     text-align: center;
+   
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
+    text-decoration: none;
+color: black;
+padding: px;
+line-height: 1.5;
   }
   
   #discover-persons-form-container{
@@ -26,7 +33,7 @@ font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans 
     display: flex;
    
     margin: 3%;
-    align-items: "center"   
+      
     }
 
 #discover-persons-select-city{
@@ -52,4 +59,17 @@ height: 30px;
 font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
 background-color: white;
 border: 1px black solid;
+}
+
+#eachPersonContainer{
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan a la siguiente fila */
+    gap: 10px; /* Espacio entre los elementos */
+    justify-content: space-around;
+    text-decoration: none; /* Quitar subrayado de los enlaces */
+    color: inherit;
+}
+#eachPerson-age-and-name-discover-persons-page{
+    display: flex;
+    justify-content: space-around
 }
