@@ -8,6 +8,7 @@ import Footer from "./components/Footer"
 import DiscoverPersonsPage from "./Pages/DiscoverPersonsPage"
 import DiscoverEventsPage from "./Pages/DicoverEventsPage"
 import ErrorPage from "./Pages/ErrorPage"
+import PersonDetailsPage from "./Pages/PersonDetailsPage"
 function App() {
  
 
@@ -19,6 +20,7 @@ function App() {
   <Route path='/' element={<HomePage></HomePage>}></Route>
   <Route path='/discover' element={<DiscoverPage></DiscoverPage>}></Route>
   <Route path="/discover/persons" element={<DiscoverPersonsPage></DiscoverPersonsPage>}></Route>
+  <Route path='persons/:personId' element={<PersonDetailsPage></PersonDetailsPage>}></Route>
   <Route path="/discover/events" element={<DiscoverEventsPage></DiscoverEventsPage>}></Route>
   <Route path='/FAQs' element={<FAQPage></FAQPage>}></Route>
   <Route path='/*' element={<ErrorPage></ErrorPage>}></Route>
