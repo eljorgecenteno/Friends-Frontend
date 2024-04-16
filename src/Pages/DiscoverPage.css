@@ -1,0 +1,17 @@
+.discover-page-photos{
+    width: 700px;
+    height: 500px;
+    margin: 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); 
+    margin-bottom: 100px;
+}
+.discover-page-photos:hover{
+    transform: scale(1.01)
+}
+#discover-page-container{
+    text-decoration: none;
+    color: black;
+    display: flex;
+    justify-content: space-around;
+}
