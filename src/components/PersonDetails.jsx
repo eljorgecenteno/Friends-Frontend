@@ -40,6 +40,12 @@ function PersonDetails({ person }) {
               <strong>{motto}</strong>
             </p>
           </div>
+          <div id="events">
+            <p>Events:</p>
+            <p>
+              <strong>{events}</strong>
+            </p>
+          </div>
         </div>
       </section>
     </div>

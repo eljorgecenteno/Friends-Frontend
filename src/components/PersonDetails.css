@@ -43,6 +43,12 @@
     font-size: 18px;
 }
 
+#events {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+}
+
 .person-picture{
     margin-top: 10px;
     height:50vh;
