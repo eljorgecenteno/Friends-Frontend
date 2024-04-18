@@ -357,7 +357,7 @@ function DiscoverPersonsPage() {
                 return index === eachPerson.interest.length -1 ? `${eachInterest}. `  : `${eachInterest}, ` 
               })}</h4>
               
-              <p>{eachPerson.motto}</p>
+              <p>{eachPerson.description}</p>
               
             </div>
             </Link>
