@@ -10,7 +10,7 @@ function DiscoverPersonsPage() {
   const [allFilteredPersons, setAllFilteredpersons] = useState([]);
   const [Age, setAge] = useState([18, 100]);
   const [interest, setInterest] = useState([]);
-  const [city, setCity] = useState("default");
+  const [city, setCity] = useState("");
   const [seeInterest, setseeInterest] = useState(false);
 
   const [Chess, setChess] = useState(false);
@@ -133,6 +133,15 @@ function DiscoverPersonsPage() {
   useEffect(() => {
     let filteredPersons = allPersons.filter((onePerson) => {
       let interestMet = false;
+      let cityAproval = false
+
+      if( city === ""){
+        cityAproval = true
+      } else if (onePerson.city === city){
+        cityAproval = true
+      }
+          
+
       if (interest.length === 0) {
         interestMet = true;
       }
@@ -145,7 +154,7 @@ function DiscoverPersonsPage() {
       }
 
       return (
-        onePerson.city === city &&
+        cityAproval &&
         interestMet &&
         onePerson.age > Age[0] &&
         onePerson.age < Age[1]
@@ -302,7 +311,7 @@ function DiscoverPersonsPage() {
                 onChange={(e) => setCity(e.target.value)}
                 id="discover-persons-select-city"
                 defaultValue=""
-                required
+                
               >
                 <option value="" disabled hidden>Selecciona una ciudad</option>
                 <option value="London">London</option>
@@ -334,7 +343,7 @@ function DiscoverPersonsPage() {
         allFilteredPersons.map((eachPerson) => {
           
           return (
-            <Link key={eachPerson._id} to={`/discover/${eachPerson._id}`}  id="eachPerson" >
+            <Link key={eachPerson._id} to={`/persons/${eachPerson._id}`}  id="eachPerson" >
             <div   >
               <img
                 src={eachPerson.profile_image_url}
