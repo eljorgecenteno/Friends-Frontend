@@ -11,9 +11,9 @@ import Friends7 from "../Photos/Friends-7.jfif";
 import Friends8 from "../Photos/Friends-8.jfif";
 import Friends9 from "../Photos/Friends-9.jpeg";
 import Friends10 from "../Photos/Friends-10.jpeg";
-
 import whiteLogo from "../Photos/Friends-logo-white.png";
 import { useState } from "react";
+
 
 function HomePage() {
   let opinions = [
@@ -37,7 +37,7 @@ function HomePage() {
       city: "Paris",
       opinion: "I had a lot of friends already in my city. But i love to connect and met new people. Friends gives the opportunity to meet really cool people in your area!",
     },
-    {
+   {
       name: "David Brocano",
       city: "Berlin",
       opinion: "I ejoy so much going to museums with my new grop of friends! i joined an event for visiting art galleries and since them we created a group and became inseparable",
@@ -118,19 +118,16 @@ function HomePage() {
           }}
         />
       </div>
-      <div id="homePage-opinions">
+      <div id="homePage-opinions" className="carousel slide">
         {opinions.map((eachOpinion) => {
-          return (
-            <div key={eachOpinion} id="homePage-eachOpinion">
-              <h4 id="homePage-eachOpinion-name&city">
-                {eachOpinion.name} , {eachOpinion.city}
-              </h4>
-              <p id="homePage-eachOpinion-opinion">{eachOpinion.opinion}</p>
-              <img src={whiteLogo} alt="friends logo" id="logo-homepage-opinions" />
-            </div>
-          );
-        })}
-      </div>
+         return (
+          <div key={eachOpinion.name} id="homePage-eachOpinion"> 
+          <h4 id="homePage-eachOpinion-name&city">{eachOpinion.name} , {eachOpinion.city}</h4>
+          <p id="homePage-eachOpinion-opinion">{eachOpinion.opinion}</p>
+          <img src={whiteLogo} alt="friends logo" id="logo-homepage-opinions" />
+          </div>) 
+      })}</div>
+
       <div id="homepage-last-space"></div>
     </div>
   );

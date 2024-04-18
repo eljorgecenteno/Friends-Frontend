@@ -7,20 +7,15 @@ function PersonDetails({ person }) {
   return (
     <div id="container">
       <section id="person-details-container">
-        <h2 id="header">
-          <strong>PersonDetails</strong>
-        </h2>
+        <h1 id="header">
+          <strong>{name}</strong>
+        </h1>
         <div>
           <div>
             <img src={profile_image_url} className="person-picture" />
           </div>
 
-          <div id="name">
-            <p>Name:</p>
-            <p>
-              <strong>{name}</strong>
-            </p>
-          </div>
+         
 
           <div id="city">
             <p>City:</p>
@@ -35,10 +30,10 @@ function PersonDetails({ person }) {
             <p>{interest.join(", ")}</p>
           </div>
           <div id="motto">
-            <p>Motto:</p>
-            <p>
-              <strong>{motto}</strong>
-            </p>
+            
+            <p style={{ fontSize: "25px" }}>
+  {motto}
+</p>
           </div>
           <div id="events">
             <p>Events:</p>
