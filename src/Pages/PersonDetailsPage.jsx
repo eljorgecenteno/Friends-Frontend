@@ -5,8 +5,6 @@ import { useParams } from "react-router-dom";
 import PersonDetails from "../components/PersonDetails";
 import personsService from "../../services/persons.service";
 
-const SERVER_URL = "http://localhost:5010";
-
 function PersonDetailsPage() {
   const { personId } = useParams();
   const [onePerson, setOnePerson] = useState(null);
