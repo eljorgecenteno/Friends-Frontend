@@ -9,6 +9,7 @@ import DiscoverPersonsPage from "./Pages/DiscoverPersonsPage"
 import DiscoverEventsPage from "./Pages/DicoverEventsPage"
 import ErrorPage from "./Pages/ErrorPage"
 import PersonDetailsPage from "./Pages/PersonDetailsPage"
+import SignUpPage from "./Pages/SignUpPage"
 function App() {
  
 
@@ -23,6 +24,7 @@ function App() {
   <Route path='persons/:personId' element={<PersonDetailsPage></PersonDetailsPage>}></Route>
   <Route path="/discover/events" element={<DiscoverEventsPage></DiscoverEventsPage>}></Route>
   <Route path='/FAQs' element={<FAQPage></FAQPage>}></Route>
+  <Route path='/SignUp' element={<SignUpPage></SignUpPage>}></Route>
   <Route path='/*' element={<ErrorPage></ErrorPage>}></Route>
   </Routes>
   <Footer></Footer>
