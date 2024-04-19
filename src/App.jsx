@@ -10,6 +10,8 @@ import DiscoverEventsPage from "./Pages/DicoverEventsPage"
 import ErrorPage from "./Pages/ErrorPage"
 import PersonDetailsPage from "./Pages/PersonDetailsPage"
 import SignUpPage from "./Pages/SignUpPage"
+import LogInPage from "./Pages/LogInPage"
+
 function App() {
  
 
@@ -25,6 +27,7 @@ function App() {
   <Route path="/discover/events" element={<DiscoverEventsPage></DiscoverEventsPage>}></Route>
   <Route path='/FAQs' element={<FAQPage></FAQPage>}></Route>
   <Route path='/SignUp' element={<SignUpPage></SignUpPage>}></Route>
+  <Route path='/logIn' element={<LogInPage></LogInPage>}></Route>
   <Route path='/*' element={<ErrorPage></ErrorPage>}></Route>
   </Routes>
   <Footer></Footer>

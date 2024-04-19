@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 import "./SignUpPage.css";
+
 function SignUpPage() {
 const [email,setEmail] =useState("")
 const [password,setPassword] =useState("")
@@ -11,7 +12,8 @@ const [city, setCity] = useState("")
 const [imageUrl, setImageUrl] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
 const [description, setDescription]= useState("")
 const [Chess, setChess] = useState(false);
-  
+
+
 const ChessHandleChange = (e) => {
   setChess(e.target.checked);
   
@@ -158,6 +160,9 @@ setInterest(selectedInterests)
 newPerson.interest = selectedInterests
 console.log(interest)
   axios.post("http://localhost:5005/auth/persons",newPerson)
+  .then((createdUser)=>{
+
+  })
 }  
 
   return (

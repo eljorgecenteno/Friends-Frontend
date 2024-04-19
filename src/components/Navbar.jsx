@@ -46,6 +46,13 @@ function Navbar() {
           >
             <h4  className={currentPage === "SignUp" ? "selected-element" : 'nav-element' }>Sign up</h4>
           </Link>
+          <Link
+            to="/LogIn"
+            style={{ color: "black", textDecoration: "none" }}
+            onClick={() => setCurrentPage('FAQs')}
+          >
+            <h4  className={currentPage === "Log in" ? "selected-element" : 'nav-element' }>Log in</h4>
+          </Link>
           </div>
         </nav>
     </header>
