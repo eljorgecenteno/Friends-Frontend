@@ -12,7 +12,7 @@ header{
 #nav-links-wrapper{
     display: flex;
     align-items: center;
-justify-content:space-between
+    justify-content:space-between
 }
 .nav-element{
     padding: 6px 12px;
@@ -39,5 +39,15 @@ justify-content:space-between
       margin-left: 20px;
       display: flex;
 text-decoration: underline;
+ 
+}
+
+#default-profile-img-navbar{
+  width: 60px;
+  border-radius: 50px;
+}
+#profile-navbar{
+  display: flex;
+  align-items: center;
  
 }
