@@ -37,6 +37,16 @@ function Navbar() {
           >
             <h4  className={currentPage === "FAQs" ? "selected-element" : 'nav-element' }>FAQ</h4>
           </Link>
+        <div id="profile-navbar">
+          <img id="default-profile-img-navbar" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="Default img" />
+          <Link
+            to="/SignUp"
+            style={{ color: "black", textDecoration: "none" }}
+            onClick={() => setCurrentPage('FAQs')}
+          >
+            <h4  className={currentPage === "SignUp" ? "selected-element" : 'nav-element' }>Sign up</h4>
+          </Link>
+          </div>
         </nav>
     </header>
   );

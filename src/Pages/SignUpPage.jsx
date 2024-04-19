@@ -5,14 +5,16 @@ function SignUpPage() {
 const [email,setEmail] =useState("")
 const [password,setPassword] =useState("")
 const [name,setName] =useState("")
-const [age, setAge] = useState(0)
+const [age, setAge] = useState(18)
 const [interest, setInterest] = useState([])
 const [city, setCity] = useState("")
+const [imageUrl, setImageUrl] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
 const [description, setDescription]= useState("")
 const [Chess, setChess] = useState(false);
   
 const ChessHandleChange = (e) => {
   setChess(e.target.checked);
+  
 };
 const [Cinema, setCinema] = useState(false);
 const cinemaHandleChange = (e) => {
@@ -68,78 +70,106 @@ const basketballHandleChange = (e) => {
 };
 
 
+const handleFileUpload = (e) => {
+  console.log("The file to be uploaded is: ", e.target.files[0]);
+  const uploadData = new FormData();
+  // imageUrl => this name has to be the same as in the model since we pass
+  // req.body to .create() method when creating a new movie in '/api/movies' POST route
+  uploadData.append("imageUrl", e.target.files[0]);
+  axios.post('http://localhost:5005/api/upload',uploadData)
+    .then(response => {
+      console.log("response is: ", response);
+      // response carries "fileUrl" which we can use to update the state
+      //setImageUrl(response.data.fileUrl);
+       console.log(response.data.fileUrl)
+       setImageUrl(response.data.fileUrl)
+    })
+    .catch(err => console.log("Error while uploading the file: ", err));
+};
 
-
+let newPerson = {
+  email, password, name, age, interest, city, description, profile_image_url: imageUrl
+}
 
 const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("guapos")
-let newPerson = {
-    email, password, name, age, interest, city, description
-}
+
 
 
 const selectedInterests = [];
 if (Chess === true) {
   selectedInterests.push("Chess");
+  
 }
 if (Cinema === true) {
   selectedInterests.push("Cinema");
+  
 }
 if (Poker === true) {
   selectedInterests.push("Poker");
+
 }
 if (Theater === true) {
   selectedInterests.push("Theater");
+
 }
 if (Party === true) {
   selectedInterests.push("Party");
+ 
 }
 if (Restaurants === true) {
   selectedInterests.push("Restaurants");
+ 
 }
 if (Hiking === true) {
   selectedInterests.push("Hiking");
+  
 }
 if (Football === true) {
   selectedInterests.push("Football");
+  
 }
 if (MovieNight === true) {
-  selectedInterests.push("Movie night");
+  selectedInterests.push("Movie night")
+  
 }
 if (Running === true) {
   selectedInterests.push("Running");
 }
 if (LanguageExchange === true) {
   selectedInterests.push("Language exchange");
+  
 }
 if (Trips === true) {
   selectedInterests.push("Trips");
+  
 }
 if (Basketball === true) {
   selectedInterests.push("Basketball");
+  
 }
 if (Literature === true) {
   selectedInterests.push("Literature");
+  
 }
 
 setInterest(selectedInterests)
 
-axios.post("http://localhost:5005/api/persons",newPerson).then((personCreated) => {
- console.log(personCreated)
-  });
-
+newPerson.interest = selectedInterests
+console.log(interest)
+  axios.post("http://localhost:5005/auth/persons",newPerson)
 }  
 
   return (
     <>
-    <h1>Sign up</h1>
+    
   <form id="sign-up-form-container">
-<label>Email:<input onChange={(e) => setEmail(e.target.value)} type="email" /></label>
-<label>Password<input onChange={(e) => setPassword(e.target.value)}type="password" /></label>
-<label>Name<input type="text" onChange={(e) => setName(e.target.value)}/></label>
-<label>Age<input type="number" onChange={(e) => setAge(e.target.value)}/></label>
-<h3>Interests</h3>
+  <h1>Create an account</h1>
+<label className="each-input-sign-up-page">Email:<input onChange={(e) => setEmail(e.target.value)} type="email" /></label>
+<label className="each-input-sign-up-page">Password<input onChange={(e) => setPassword(e.target.value)}type="password" /></label>
+<label className="each-input-sign-up-page">Name<input type="text" onChange={(e) => setName(e.target.value)}/></label>
+<label className="each-input-sign-up-page">Age<input min={18} max={100} type="number" onChange={(e) => setAge(e.target.value)}/></label>
+<h3 className="each-input-sign-up-page"> Choose your Interests:</h3>
 <div >
                   <input
               type="checkbox"
@@ -254,21 +284,27 @@ axios.post("http://localhost:5005/api/persons",newPerson).then((personCreated) =
             <label htmlFor="Literature"> Literature</label>
             <br></br>
             </div>
+            
+
+            <h3 style={{ marginTop: "10px" }}>City</h3>
+
 <select
                 name="cityselected"
                 defaultValue=""
+                className="each-input-sign-up-page"
                 onChange={(e) => setCity(e.target.value)}
               >
-                <option value="" disabled hidden>Choose a city</option>
+                <option value="" disabled hidden>Choose your city</option>
                 <option value="London">London</option>
                 <option value="Paris">Paris</option>º
                 <option value="Madrid">Madrid</option>
                 <option value="Berlin">Berlin</option>
                 <option value="Athens">Athens</option>
               </select>
-<label>img<input type="img" /></label>
-<label>Description about yourself<textarea  onChange={(e) => setDescription(e.target.value)}id="description" name="description" rows="4" cols="50"></textarea></label>
-<button type="submit" onClick={handleSubmit}>Create account</button>
+              <label className="each-input-sign-up-page">About you<textarea  onChange={(e) => setDescription(e.target.value)}id="description" placeholder="Write a brief description about yourself" name="description" rows="4" cols="50"></textarea></label>
+<label className="each-input-sign-up-page">Profile image<input onChange={(e)=>{handleFileUpload(e)}}type="file" placeholder="Choose file" /></label>
+
+<button type="submit" className="each-input-sign-up-page" id="create-account-button"onClick={handleSubmit}>Create account</button>
   </form>
     </>
   )
