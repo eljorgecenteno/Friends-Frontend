@@ -1,8 +1,9 @@
 import React from "react";
-import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import eventsService from "../../services/events.service";
+import EventDetails from "../components/EventDetails";
 
 function EventDetailsPage() {
   const { eventId } = useParams();
@@ -31,7 +32,11 @@ function EventDetailsPage() {
     );
   }
 
-  return <div>EventDetailsPage</div>;
+  return (
+    <div>
+      <EventDetails meetup={oneEvent}></EventDetails>
+    </div>
+  );
 }
 
 export default EventDetailsPage;
