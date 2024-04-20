@@ -7,7 +7,7 @@
 }
 #person-details-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: column;    
     align-items: center;
     width: 34%;
     margin-bottom: 60px;
@@ -80,8 +80,7 @@
     height:55vh;
     width: 35vw;
     border-radius: 90%;
-    margin-bottom: 20px;
-    
+    margin-bottom: 20px;    
 }
 
 #header {
