@@ -15,8 +15,6 @@ function PersonDetails({ person }) {
             <img src={profile_image_url} className="person-picture" />
           </div>
 
-         
-
           <div id="city">
             <p>City:</p>
             <p>{city}</p>
@@ -30,17 +28,16 @@ function PersonDetails({ person }) {
             <p>{interest.join(", ")}</p>
           </div>
           <div id="motto">
-            
-            <p style={{ fontSize: "25px" }}>
-  {motto}
-</p>
+            <p style={{ fontSize: "25px" }}>{motto}</p>
           </div>
           <div id="events">
             <p>Events:</p>
             <p>
-              <strong>{events}</strong>
+              {events.map((oneMeetup) => {
+                return oneMeetup.name;
+              })}
             </p>
-          </div>
+          </div>          
         </div>
       </section>
     </div>
