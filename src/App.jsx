@@ -12,6 +12,7 @@ import PersonDetailsPage from "./Pages/PersonDetailsPage";
 import SignUpPage from "./Pages/SignUpPage";
 import LogInPage from "./Pages/LogInPage";
 import EventDetailsPage from "./Pages/EventDetailsPage";
+import EditEventPage from "./Pages/EditEventPage";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="persons/:personId" element={<PersonDetailsPage></PersonDetailsPage>}></Route>
         <Route path="/discover/events" element={<DiscoverEventsPage></DiscoverEventsPage>}></Route>
         <Route path="/events/:eventId" element={<EventDetailsPage></EventDetailsPage>}></Route>
+        <Route path="/events/edit/:eventId" element={<EditEventPage></EditEventPage>}></Route>
         <Route path="/FAQs" element={<FAQPage></FAQPage>}></Route>
         <Route path="/SignUp" element={<SignUpPage></SignUpPage>}></Route>
         <Route path="/logIn" element={<LogInPage></LogInPage>}></Route>

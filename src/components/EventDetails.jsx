@@ -1,9 +1,12 @@
 import React from "react";
 import "./EventDetails.css";
 import Button from "@mui/material/Button";
+import { useParams, Link } from "react-router-dom";
 
 function EventDetails({ meetup }) {
   const { name, profile_image_url, interest, description, date, opinions, persons, city } = meetup;
+
+  const {eventId} = useParams()
 
   return (
     <div id="container">
@@ -39,7 +42,9 @@ function EventDetails({ meetup }) {
             <Button variant="contained">Join</Button>
           </div>
           <div id="button">
-            <Button variant="contained">Edit</Button>
+            <Link to={`/events/edit/${eventId}`}>
+              <Button variant="contained">Edit</Button>
+            </Link>
           </div>
           <div id="button">
             <Button variant="contained">Delete</Button>
