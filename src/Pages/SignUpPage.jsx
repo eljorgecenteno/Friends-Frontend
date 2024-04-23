@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import "./SignUpPage.css";
-
+import { useNavigate } from "react-router-dom";
 function SignUpPage() {
 const [email,setEmail] =useState("")
 const [password,setPassword] =useState("")
@@ -12,7 +12,7 @@ const [city, setCity] = useState("")
 const [imageUrl, setImageUrl] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
 const [description, setDescription]= useState("")
 const [Chess, setChess] = useState(false);
-
+const navigate = useNavigate()
 
 const ChessHandleChange = (e) => {
   setChess(e.target.checked);
@@ -85,6 +85,7 @@ const handleFileUpload = (e) => {
       //setImageUrl(response.data.fileUrl);
        console.log(response.data.fileUrl)
        setImageUrl(response.data.fileUrl)
+       
     })
     .catch(err => console.log("Error while uploading the file: ", err));
 };
@@ -161,7 +162,7 @@ newPerson.interest = selectedInterests
 console.log(interest)
   axios.post("http://localhost:5005/auth/persons",newPerson)
   .then((createdUser)=>{
-
+    navigate("/logIn")
   })
 }  
 
