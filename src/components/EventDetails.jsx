@@ -1,5 +1,6 @@
 import React from "react";
 import "./EventDetails.css";
+import Button from "@mui/material/Button";
 
 function EventDetails({ meetup }) {
   const { name, profile_image_url, interest, description, date, opinions, persons, city } = meetup;
@@ -32,6 +33,17 @@ function EventDetails({ meetup }) {
               return oneOpinion.description;
             })}
           </p>
+        </div>
+        <div id="buttons">
+          <div id="button">
+            <Button variant="contained">Join</Button>
+          </div>
+          <div id="button">
+            <Button variant="contained">Edit</Button>
+          </div>
+          <div id="button">
+            <Button variant="contained">Delete</Button>
+          </div>
         </div>
       </section>
     </div>
