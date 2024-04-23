@@ -2,9 +2,13 @@ import { Link } from "react-router-dom";
 import "./Navbar.css";
 import Logo from "../Photos/Friends_logo.svg.png";
 import { useState } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../context/auth.context";
 
 function Navbar() {
   const [currentPage, setCurrentPage] = useState('home')
+  const {user, isLoggedIn, logOutUser } = useContext(AuthContext)
+
   return (
     <header>
       
@@ -37,7 +41,7 @@ function Navbar() {
           >
             <h4  className={currentPage === "FAQs" ? "selected-element" : 'nav-element' }>FAQ</h4>
           </Link>
-        <div id="profile-navbar">
+       {!isLoggedIn  &&  <div id="profile-navbar">
           <img id="default-profile-img-navbar" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="Default img" />
           <Link
             to="/SignUp"
@@ -53,7 +57,8 @@ function Navbar() {
           >
             <h4  className={currentPage === "Log in" ? "selected-element" : 'nav-element' }>Log in</h4>
           </Link>
-          </div>
+          </div>}
+          {isLoggedIn && <button onClick={logOutUser}>Log out</button>}
         </nav>
     </header>
   );
