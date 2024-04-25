@@ -1,7 +1,7 @@
 
 import axios from 'axios';
  
-class PersonsService {
+class EventsService {
   constructor() {
     this.api = axios.create({
       baseURL: import.meta.env.SERVER_URL || 'http://localhost:5005'
@@ -21,32 +21,32 @@ class PersonsService {
   }
  
   // POST /api/projects
-  createPerson = requestBody => {
-    return this.api.post('/api/persons', requestBody);
+  createEvent = requestBody => {
+    return this.api.post('/api/meetups', requestBody);
   };
  
   // GET /api/projects
-  getAllPersons = () => {
-    return this.api.get('/api/persons');
+  getAllEvents = () => {
+    return this.api.get('/api/meetups');
   };
  
   // GET /api/projects/:id
-  getPerson = id => {
-    return this.api.get(`/api/persons/${id}`);
+  getEvent = id => {
+    return this.api.get(`/api/meetups/${id}`);
   };
  
   // PUT /api/projects/:id
-  updatePerson = (id, requestBody) => {
-    return this.api.put(`/api/persons/${id}`, requestBody);
+  updateEvent = (id, requestBody) => {
+    return this.api.put(`/api/meetups/${id}`, requestBody);
   };
  
   // DELETE /api/projects/:id
-  deletePerson = id => {
-    return this.api.delete(`/api/persons/${id}`);
+  deleteEvent = id => {
+    return this.api.delete(`/api/meetups/${id}`);
   };
 }
  
 // Create one instance object
-const personsService = new PersonsService();
+const eventsService = new EventsService();
  
-export default personsService;
+export default eventsService;

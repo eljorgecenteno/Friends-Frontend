@@ -1,0 +1,75 @@
+#eachPerson img {
+    width: 300px;
+    height: 300px;
+    border-bottom: 1px solid black;
+    border-radius: 3px;
+  }
+  #eachPerson {
+   
+    margin-bottom: 10px;
+    border: 2px solid black;
+    border-radius: 2px;
+    width: 300px;
+    height: 500px;
+    margin-bottom: 30px;
+    text-align: center;
+   
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
+    text-decoration: none;
+color: black;
+padding: px;
+line-height: 1.5;
+  }
+  
+  #discover-persons-form-container{
+display: flex;
+
+font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
+}
+#discover-persons-form-container h2{
+    font-size: 20px;
+    }
+#discover-persons-container{
+    display: flex;
+   
+    margin: 3%;
+      
+    }
+
+#discover-persons-select-city{
+margin-left: 10px;
+margin-right: 60px;
+height: 30px;
+font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
+}
+#discover-persons-filter-button{
+    height: 30px;
+    width: 80px;
+    border-radius: 1px;
+    margin-left: 60px;
+margin-right: 60px;
+font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
+background-color: rgb(228, 228, 228);
+}
+
+#see-interest-discover-page{
+    margin-left: 10px;
+
+height: 30px;
+font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
+background-color: white;
+border: 1px black solid;
+}
+
+#eachPersonContainer{
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan a la siguiente fila */
+    gap: 10px; /* Espacio entre los elementos */
+    justify-content: space-around;
+    text-decoration: none; /* Quitar subrayado de los enlaces */
+    color: inherit;
+}
+#eachPerson-age-and-name-discover-persons-page{
+    display: flex;
+    justify-content: space-around
+}
