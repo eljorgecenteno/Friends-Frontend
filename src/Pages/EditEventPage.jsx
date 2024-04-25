@@ -41,7 +41,7 @@ function EditEventPage() {
     axios
       .put(`${API_URL}/api/meetups/${eventId}`, requestBody)
       .then((response) => {
-        navigate(`/projects/${projectId}`)
+        navigate(`/events/${eventId}`)
       });
   };
 
