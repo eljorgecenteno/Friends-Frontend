@@ -8,7 +8,7 @@ import { AuthContext } from "../context/auth.context";
 
 const API_URL = "http://localhost:5005";
 
-function EventDetails({ meetup }) {
+function EventDetails({ meetup, getEvent }) {
   const { name, profile_image_url, interest, description, date, opinions, persons, city } = meetup;
 
   const { eventId } = useParams();
@@ -27,7 +27,9 @@ function EventDetails({ meetup }) {
 
   function joinEvent() {
     axios.put(`${API_URL}/api/meetups/${eventId}/join`, { _id: user._id }).then((response) => {
-      navigate(`/persons/${user._id}`)
+      // navigate(`/persons/${user._id}`);
+      alert(`Success, You are going to ${name}`);
+      getEvent();
       console.log(response.data);
     });
   }
@@ -77,6 +79,14 @@ function EventDetails({ meetup }) {
               Delete
             </Button>
           </div>
+          <br />
+          {persons && <p>All Attending:</p>}
+          <ol>
+            {persons &&
+              persons.map((person, index) => {
+                return <li key={person._id}>{person.name}</li>;
+              })}
+          </ol>
         </div>
       </section>
     </div>

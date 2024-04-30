@@ -34,7 +34,7 @@ function EventDetailsPage() {
 
   return (
     <div>
-      <EventDetails meetup={oneEvent}></EventDetails>
+      <EventDetails getEvent={getEvent} meetup={oneEvent}></EventDetails>
     </div>
   );
 }
