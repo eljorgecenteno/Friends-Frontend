@@ -21,7 +21,7 @@ function AuthProviderWrapper(props){
       if (storedToken) {
         // We must send the JWT token in the request's "Authorization" Headers
         axios.get(
-          `http://localhost:5005/auth/verify`, 
+          `${import.meta.env.VITE_API_URL}/auth/verify`, 
           { headers: { Authorization: `Bearer ${storedToken}`} }
         )
         .then((response) => {
@@ -31,7 +31,7 @@ function AuthProviderWrapper(props){
           setIsLoggedIn(true);
           setIsLoading(false);
           setUser(user);  
-          console.log(user)      
+              
         })
         .catch((error) => {
           // If the server sends an error response (invalid token) 
@@ -59,8 +59,9 @@ function AuthProviderWrapper(props){
     useEffect(() => {                 //  <==  ADD                                   
       authenticateUser()
     }, []);
-   
-
+    
+    
+ 
 return (
     <AuthContext.Provider value={{isLoggedIn, isLoading, user, authenticateUser, logOutUser}}>
       

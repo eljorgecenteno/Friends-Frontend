@@ -34,3 +34,34 @@
     text-decoration: none;
     color: black;
 }
+#log-in-message-discover-page{
+    background-color: #ffffff;
+    display: block;
+    position: absolute;
+    margin-top: 8vw;
+    margin-left: 20vw;
+    font-size: 25px;
+    border-radius: 10px;
+    padding: 60px;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 3px solid black;
+}
+.logIn-and-signUp-discoverPage{
+   color: black;
+   background-color: rgb(232, 245, 114);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin: 50px;
+   border-radius: 10px;
+}
+
+.discover-page-photos-no-logIn{
+    width: 700px;
+    height: 500px;
+    margin: 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); 
+    margin-bottom: 100px;
+    margin-top: 1%;
+}

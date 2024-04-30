@@ -4,10 +4,32 @@
     align-items: center;
     margin-top: 30px;
     margin-bottom: 80px;
-    background-color: rgb(255, 254, 237);
-  
+ 
+  font-size: 23px;
 }
 #log-in-email{
 margin-bottom: 20px;
+}
 
+
+
+#logIn-error{
+    margin: 20px; 
+    font-size: 25px;
+    color: brown;
+
+}
+#logIn-button{
+    margin-top: 20px;
+    font-size: 29px;
+    border-radius: 5px;
+    margin-bottom: 40px;
+}
+
+#title-logIn{
+    margin-bottom: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(49, 49, 49);
+    font-size: 2em; /* Cambiado a em para mayor escalabilidad */
+    text-align: center;
 }

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 function LogInPage(props) {
 const [email,setEmail] =useState("")
+const [error,setError] =useState(null)
 const [password,setPassword] =useState("")
 const navigate = useNavigate()
 
@@ -16,23 +17,29 @@ const handleSubmit = (e)=>{
         email, 
         password
     }
-    axios.post("http://localhost:5005/auth/login",user).then(response => {
+    axios.post(`${import.meta.env.VITE_API_URL}/auth/login`,user)
+    .then(response => {
         localStorage.setItem("authToken",response.data.authToken)
 
         authenticateUser()
         console.log(response.data);
         navigate("/discover") // Assuming you want to log the response data
       })
+    .catch((err)=>{
+      setError(err.response.data.message)
+console.log(err.response.data.message)
+    })
     
 }
   return (
     <div >
        
         <form id="log-in-container">
-        <h1>Log in</h1>
+        <h1 id="title-logIn">Log in</h1>
         <label id="log-in-email">Email:<input onChange={(e) => setEmail(e.target.value)} type="email" /></label>
 <label >Password<input onChange={(e) => setPassword(e.target.value)}type="password" /></label>
-<button onClick={handleSubmit}>Log in</button>
+{error && <h3 id="logIn-error">Error: {error}</h3>}
+<button id="logIn-button"onClick={handleSubmit}>Log in</button>
         </form>
    </div>
   );

@@ -12,6 +12,8 @@ const [city, setCity] = useState("")
 const [imageUrl, setImageUrl] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
 const [description, setDescription]= useState("")
 const [Chess, setChess] = useState(false);
+const [error, setError] = useState(null);
+
 const navigate = useNavigate()
 
 const ChessHandleChange = (e) => {
@@ -78,7 +80,7 @@ const handleFileUpload = (e) => {
   // imageUrl => this name has to be the same as in the model since we pass
   // req.body to .create() method when creating a new movie in '/api/movies' POST route
   uploadData.append("imageUrl", e.target.files[0]);
-  axios.post('http://localhost:5005/api/upload',uploadData)
+  axios.post(`${import.meta.env.VITE_API_URL}/api/upload`,uploadData)
     .then(response => {
       console.log("response is: ", response);
       // response carries "fileUrl" which we can use to update the state
@@ -160,9 +162,13 @@ setInterest(selectedInterests)
 
 newPerson.interest = selectedInterests
 console.log(interest)
-  axios.post("http://localhost:5005/auth/persons",newPerson)
+  axios.post(`${import.meta.env.VITE_API_URL}/auth/persons`,newPerson)
   .then((createdUser)=>{
     navigate("/logIn")
+  })
+  .catch((err)=>{
+    console.log(err.response.data.message)
+    setError(err.response.data.message)
   })
 }  
 
@@ -309,7 +315,7 @@ console.log(interest)
               </select>
               <label className="each-input-sign-up-page">About you<textarea  onChange={(e) => setDescription(e.target.value)}id="description" placeholder="Write a brief description about yourself" name="description" rows="4" cols="50"></textarea></label>
 <label className="each-input-sign-up-page">Profile image<input onChange={(e)=>{handleFileUpload(e)}}type="file" placeholder="Choose file" /></label>
-
+{error && <h2>Error: {error}</h2>}
 <button type="submit" className="each-input-sign-up-page" id="create-account-button"onClick={handleSubmit}>Create account</button>
   </form>
     </>

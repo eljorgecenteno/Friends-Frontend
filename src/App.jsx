@@ -13,7 +13,8 @@ import SignUpPage from "./Pages/SignUpPage";
 import LogInPage from "./Pages/LogInPage";
 import EventDetailsPage from "./Pages/EventDetailsPage";
 import EditEventPage from "./Pages/EditEventPage";
-
+import IsPrivate from "./components/isPrivate";
+import IsAnon from "./components/isAnon";
 function App() {
   return (
     <>
@@ -21,14 +22,14 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage></HomePage>}></Route>
         <Route path="/discover" element={<DiscoverPage></DiscoverPage>}></Route>
-        <Route path="/discover/persons" element={<DiscoverPersonsPage></DiscoverPersonsPage>}></Route>
-        <Route path="persons/:personId" element={<PersonDetailsPage></PersonDetailsPage>}></Route>
-        <Route path="/discover/events" element={<DiscoverEventsPage></DiscoverEventsPage>}></Route>
-        <Route path="/events/:eventId" element={<EventDetailsPage></EventDetailsPage>}></Route>
-        <Route path="/events/edit/:eventId" element={<EditEventPage></EditEventPage>}></Route>
+        <Route path="/discover/persons" element={<IsPrivate><DiscoverPersonsPage></DiscoverPersonsPage></IsPrivate>}></Route>
+        <Route path="persons/:personId" element={<IsPrivate><PersonDetailsPage></PersonDetailsPage></IsPrivate>}></Route>
+        <Route path="/discover/events" element={<IsPrivate><DiscoverEventsPage></DiscoverEventsPage></IsPrivate>}></Route>
+        <Route path="/events/:eventId" element={<IsPrivate><EventDetailsPage></EventDetailsPage></IsPrivate>}></Route>
+        <Route path="/events/edit/:eventId" element={<IsPrivate><EditEventPage></EditEventPage></IsPrivate>}></Route>
         <Route path="/FAQs" element={<FAQPage></FAQPage>}></Route>
-        <Route path="/SignUp" element={<SignUpPage></SignUpPage>}></Route>
-        <Route path="/logIn" element={<LogInPage></LogInPage>}></Route>
+        <Route path="/SignUp" element={<IsAnon><SignUpPage></SignUpPage></IsAnon>}></Route>
+        <Route path="/logIn" element={<IsAnon><LogInPage></LogInPage></IsAnon>}></Route>
         <Route path="/*" element={<ErrorPage></ErrorPage>}></Route>
       </Routes>
       <Footer></Footer>
