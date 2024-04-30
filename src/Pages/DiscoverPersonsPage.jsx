@@ -71,7 +71,7 @@ function DiscoverPersonsPage() {
   };
 
   useEffect(() => {
-    axios.get("http://localhost:5005/api/persons").then((allPersons) => {
+    axios.get(`${import.meta.env.VITE_API_URL}/api/persons`).then((allPersons) => {
       setAllpersons(allPersons.data);
       setAllFilteredpersons(allPersons.data);
     });

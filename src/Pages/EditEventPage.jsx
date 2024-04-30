@@ -39,7 +39,7 @@ function EditEventPage() {
     const requestBody = { name, profile_image_url, interest, description, date };
 
     axios
-      .put(`${API_URL}/api/meetups/${eventId}`, requestBody)
+      .put(`${import.meta.env.VITE_API_URL}/api/meetups/${eventId}`, requestBody)
       .then((response) => {
         navigate(`/events/${eventId}`)
       });

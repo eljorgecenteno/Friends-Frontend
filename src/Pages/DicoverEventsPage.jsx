@@ -76,7 +76,7 @@ function DiscoverEventsPage() {
   };
 
   useEffect(() => {
-    axios.get("http://localhost:5005/api/meetups").then((allEvents) => {
+    axios.get(`${import.meta.env.VITE_API_URL}/api/meetups`).then((allEvents) => {
       setAllEvents(allEvents.data);
       setAllFilteredpersons(allEvents.data);
     });
