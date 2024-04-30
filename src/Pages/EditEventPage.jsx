@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./EditEventPage.css"
 
 const API_URL = "http://localhost:5005";
 
@@ -10,15 +11,13 @@ function EditEventPage() {
   const [profile_image_url, setProfile_image_url] = useState("");
   const [interest, setInterest] = useState("");
   const [description, setDescription] = useState("");
-  const [date, setDate] = useState({
-    $y: 2024,
-    $m: 1,
-    $d: 20,
-  });
+  const [year, setYear] = useState("");
+  const [month, setMonth] = useState("");
+  const [day, setDay] = useState("");
   const [city, setCity] = useState("");
 
   const { eventId } = useParams();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -29,7 +28,10 @@ function EditEventPage() {
         setProfile_image_url(oneEvent.profile_image_url);
         setInterest(oneEvent.interest);
         setDescription(oneEvent.description);
-        setDate(oneEvent.date);
+        setYear(oneEvent.year);
+        setMonth(oneEvent.month)
+        setDay(oneEvent.day)
+        setCity(oneEvent.city)
       })
       .catch((error) => console.log(error));
   }, [eventId]);
@@ -38,6 +40,9 @@ function EditEventPage() {
     e.preventDefault();
     const requestBody = { name, profile_image_url, interest, description, date };
 
+    /*axios.put(`${API_URL}/api/meetups/${eventId}`, requestBody).then((response) => {
+      navigate(`/events/${eventId}`);
+    });*/
     axios
       .put(`${import.meta.env.VITE_API_URL}/api/meetups/${eventId}`, requestBody)
       .then((response) => {
@@ -45,16 +50,25 @@ function EditEventPage() {
       });
   };
 
+  function setDate(e) {
+    const splitDate = e.target.value.split("-");
+    setYear(splitDate[0]);
+    setMonth(splitDate[1]);
+    setDay(splitDate[2]);
+  } 
+
+
+
   return (
     <div className="EditProjectPage">
-      <h3>Edit-Event</h3>
+      <h1>Edit Event</h1>
 
-      <form onSubmit={handleFormSubmit}>
+      <form id="form-container" onSubmit={handleFormSubmit}>
         <label>Name:</label>
         <input type="text" name="name" value={name} onChange={(e) => setName(e.target.value)} />
 
         <label>Profile Image Url:</label>
-        <input type="image" name="profile_image_url" src={profile_image_url} onChange={(e) => setProfile_image_url(e.target.value)} />
+        <input type="text" name="profile_image_url" value={profile_image_url} onChange={(e) => setProfile_image_url(e.target.value)} />
 
         <label>Interest:</label>
         <input type="text" name="interest" value={interest} onChange={(e) => setName(e.target.value)} />
@@ -63,15 +77,14 @@ function EditEventPage() {
         <input type="text" name="description" value={description} onChange={(e) => setName(e.target.value)} />
 
         <label>Date:</label>
-        <input type="date" name="date" value={date} onChange={(e) => setName(e.target.value)} />
+        <input type="date" name="date" onChange={setDate} />
 
         <label>City:</label>
         <input type="text" name="city" value={city} onChange={(e) => setName(e.target.value)} />
 
         <button type="submit">Update Event</button>
       </form>
-
-      <button onClick={deleteProject}>Delete Project</button>
+      
     </div>
   );
 }

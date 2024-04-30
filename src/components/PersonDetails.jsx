@@ -28,6 +28,7 @@ function PersonDetails({ person }) {
             <p>{interest.join(", ")}</p>
           </div>
           <div id="motto">
+            <p>Motto:</p>
             <p style={{ fontSize: "25px" }}>{motto}</p>
           </div>
           <div id="events">

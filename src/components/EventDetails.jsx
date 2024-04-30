@@ -1,12 +1,36 @@
-import React from "react";
+import { useContext } from "react";
 import "./EventDetails.css";
 import Button from "@mui/material/Button";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { AuthContext } from "../context/auth.context";
+
+const API_URL = "http://localhost:5005";
 
 function EventDetails({ meetup }) {
   const { name, profile_image_url, interest, description, date, opinions, persons, city } = meetup;
 
-  const {eventId} = useParams()
+  const { eventId } = useParams();
+  const navigate = useNavigate();
+
+  const { user } = useContext(AuthContext);
+
+  const deleteEvent = () => {
+    axios
+      .delete(`${API_URL}/api/meetups/${eventId}`)
+      .then(() => {
+        navigate("/discover/events");
+      })
+      .catch((err) => console.log(err));
+  };
+
+  function joinEvent() {
+    axios.put(`${API_URL}/api/meetups/${eventId}/join`, { _id: user._id }).then((response) => {
+      navigate(`/persons/${user._id}`)
+      console.log(response.data);
+    });
+  }
 
   return (
     <div id="container">
@@ -39,7 +63,9 @@ function EventDetails({ meetup }) {
         </div>
         <div id="buttons">
           <div id="button">
-            <Button variant="contained">Join</Button>
+            <Button variant="contained" onClick={joinEvent}>
+              Join
+            </Button>
           </div>
           <div id="button">
             <Link to={`/events/edit/${eventId}`}>
@@ -47,7 +73,9 @@ function EventDetails({ meetup }) {
             </Link>
           </div>
           <div id="button">
-            <Button variant="contained">Delete</Button>
+            <Button variant="contained" onClick={deleteEvent}>
+              Delete
+            </Button>
           </div>
         </div>
       </section>
