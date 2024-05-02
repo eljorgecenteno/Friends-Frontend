@@ -294,6 +294,7 @@ function DiscoverEventsPage() {
             </button>
           </div>
         </form>
+        <button type="submit" id="discover-persons-filter-button">Create</button>
       </div>
       <div id="eachPersonContainer">
         {allEvents &&
