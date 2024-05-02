@@ -42,15 +42,20 @@ setNewcoment(true)
   }
 
   const handleSubmit = (e)=>{
-    const commentObj = {description: comment, eventId: meetup._id, personId: user._id}
-   
+
     e.preventDefault();
+
+    const commentObj = {description: comment, event: meetup._id, person: user._id}
+   
+    
     axios.post(`${import.meta.env.VITE_API_URL}/api/opinions`, commentObj)
     .then((res)=>{
-      axios.get(`${import.meta.env.VITE_API_URL}/api/opinions`).then((allOpinions) => {
-        setAllOpinions(allOpinions.data);
-        
-      });
+     return  axios.get(`${import.meta.env.VITE_API_URL}/api/opinions`)
+     
+    })
+    .then((allOpinions) => {
+      setAllOpinions(allOpinions.data);
+      
     })
     .catch((err)=>{
       console.log(err)
@@ -128,8 +133,9 @@ setNewcoment(true)
         </label> <button onClick={handleSubmit}>Send comment</button></form>}
         <p>
   {allOpinions && allOpinions.map(eachOpinion => {
+    console.log(eachOpinion)
     if (eachOpinion.event._id === eventId) {
-      return <p key={eachOpinion._id}>{eachOpinion.person.name} : {eachOpinion.description}</p>
+      return <p key={eachOpinion.person._id}>{eachOpinion.person.name} : {eachOpinion.description}</p>
     } 
   })}
 </p>
