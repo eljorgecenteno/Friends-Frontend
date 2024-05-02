@@ -6,11 +6,14 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { AuthContext } from "../context/auth.context";
 
-const API_URL = "http://localhost:5005";
+
 
 function EventDetails({ meetup, getEvent }) {
-  const { name, profile_image_url, interest, description, date, opinions, persons, city } = meetup;
+  const { name, profile_image_url, interest, description, date, opinions, persons, city, _id } = meetup;
 
+  const [newComent, setNewcoment] =useState(false)
+  const [allOpinions, setAllOpinions] =useState([])
+  const [comment, setComent] =useState("")
   const { eventId } = useParams();
   const navigate = useNavigate();
 
@@ -18,7 +21,7 @@ function EventDetails({ meetup, getEvent }) {
 
   const deleteEvent = () => {
     axios
-      .delete(`${API_URL}/api/meetups/${eventId}`)
+      .delete(`${import.meta.env.VITE_API_URL}api/meetups/${eventId}`)
       .then(() => {
         navigate("/discover/events");
       })
@@ -26,13 +29,42 @@ function EventDetails({ meetup, getEvent }) {
   };
 
   function joinEvent() {
-    axios.put(`${API_URL}/api/meetups/${eventId}/join`, { _id: user._id }).then((response) => {
+    axios.put(`${import.meta.env.VITE_API_URL}/api/meetups/${eventId}/join`, { _id: user._id }).then((response) => {
       // navigate(`/persons/${user._id}`);
       alert(`Success, You are going to ${name}`);
       getEvent();
       console.log(response.data);
     });
   }
+
+  function addOpinion(){
+setNewcoment(true)
+  }
+
+  const handleSubmit = (e)=>{
+    const commentObj = {description: comment, eventId: meetup._id, personId: user._id}
+   
+    e.preventDefault();
+    axios.post(`${import.meta.env.VITE_API_URL}/api/opinions`, commentObj)
+    .then((res)=>{
+      axios.get(`${import.meta.env.VITE_API_URL}/api/opinions`).then((allOpinions) => {
+        setAllOpinions(allOpinions.data);
+        
+      });
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+    }
+
+
+    useEffect(() => {
+      axios.get(`${import.meta.env.VITE_API_URL}/api/opinions`).then((allOpinions) => {
+        setAllOpinions(allOpinions.data);
+        
+      });
+    }, []);
+
 
   return (
     <div id="container">
@@ -42,26 +74,6 @@ function EventDetails({ meetup, getEvent }) {
         </h1>
         <div>
           <img src={profile_image_url} className="person-picture" />
-        </div>
-        <div id="city">
-          <p>City:</p>
-          <p>{city}</p>
-        </div>
-        <div id="city">
-          <p>Date:</p>
-          <p>{`${date.$d}-${date.$m}-${date.$y}`}</p>
-        </div>
-        <div id="interests">
-          <p>Interest:</p>
-          <p>{interest}</p>
-        </div>
-        <div id="interests">
-          <p>Opinion:</p>
-          <p>
-            {opinions.map((oneOpinion) => {
-              return oneOpinion.description;
-            })}
-          </p>
         </div>
         <div id="buttons">
           <div id="button">
@@ -80,15 +92,49 @@ function EventDetails({ meetup, getEvent }) {
             </Button>
           </div>
           <br />
-          {persons && <p>All Attending:</p>}
+          
+        </div>
+        <div id="city">
+          <p>City:</p>
+          <p>{city}</p>
+        </div>
+        <div id="city">
+          <p>Date:</p>
+          <p>{`${date.$d}-${date.$m}-${date.$y}`}</p>
+        </div>
+        <div id="interests">
+          <p>Interest:</p>
+          <p>{interest}</p>
+        </div>
+        {persons && <p>All Attending:</p>}
           <ol>
             {persons &&
               persons.map((person, index) => {
                 return <li key={person._id}>{person.name}</li>;
               })}
           </ol>
+        <div id="interests">
+          <p>Opinions:</p>
+          <p>
+            {opinions.map((oneOpinion) => {
+              return oneOpinion.description;
+            })}
+          </p>
+          <button onClick={addOpinion}>Add Opinion</button>
         </div>
+        
+        {newComent && <form> <label className="each-input-sign-up-page">
+          <textarea onChange={(e) => setComent(e.target.value)} id="description" placeholder="Write your comment here" name="description" rows="4" cols="50"></textarea>
+        </label> <button onClick={handleSubmit}>Send comment</button></form>}
+        <p>
+  {allOpinions && allOpinions.map(eachOpinion => {
+    if (eachOpinion.event._id === eventId) {
+      return <p key={eachOpinion._id}>{eachOpinion.person.name} : {eachOpinion.description}</p>
+    } 
+  })}
+</p>
       </section>
+    
     </div>
   );
 }
