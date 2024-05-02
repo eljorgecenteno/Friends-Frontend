@@ -307,7 +307,7 @@ function DiscoverEventsPage() {
 
                   <h3> {eachEvent.city}</h3>
 
-                  <p>{`${eachEvent.date.$d}/${eachEvent.date.$m + 1}/${eachEvent.date.$y}`}</p>
+                  <p>{`${eachEvent.date?.$d}/${eachEvent.date?.$m + 1}/${eachEvent.date?.$y}`}</p>
                   <h4> {`Theme: ${eachEvent.interest}`}</h4>
 
                   <p>{eachEvent.description}</p>
