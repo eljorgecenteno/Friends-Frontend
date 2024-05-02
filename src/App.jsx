@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar";
 import FAQPage from "./Pages/FAQPage";
 import Footer from "./components/Footer";
 import DiscoverPersonsPage from "./Pages/DiscoverPersonsPage";
-import DiscoverEventsPage from "./Pages/DicoverEventsPage";
+import DiscoverEventsPage from "./Pages/DiscoverEventsPage";
 import ErrorPage from "./Pages/ErrorPage";
 import PersonDetailsPage from "./Pages/PersonDetailsPage";
 import SignUpPage from "./Pages/SignUpPage";
