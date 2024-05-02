@@ -27,9 +27,9 @@ function AuthProviderWrapper(props){
         .then((response) => {
           // If the server verifies that the JWT token is valid  
           const user = response.data;
-          console.log(user, 'ín .then()')
+         
          // Update state variables       
-         console.log("Äuthenticated") 
+       
           setIsLoggedIn(true);
           setIsLoading(false);
           setUser(user);  
