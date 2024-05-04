@@ -7,6 +7,7 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
+import eventsService from "../../services/events.service";
 
 function DiscoverEventsPage() {
   const [allEvents, setAllEvents] = useState([]);
@@ -17,6 +18,14 @@ function DiscoverEventsPage() {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [Chess, setChess] = useState(false);
+  const [events, setEvents] = useState([]);
+
+  const getAllEvents = () => {
+    eventsService
+      .getAllEvents()
+      .then((response) => setEvents(response.data))
+      .catch((err) => console.log(err));
+  };
 
   const ChessHandleChange = (e) => {
     setChess(e.target.checked);
@@ -205,6 +214,10 @@ function DiscoverEventsPage() {
       setseeInterest(false);
     }
   }
+
+  useEffect(() => {
+    getAllEvents();
+  }, []);
 
   return (
     <>

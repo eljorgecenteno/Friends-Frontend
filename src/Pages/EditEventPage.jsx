@@ -14,7 +14,8 @@ function EditEventPage() {
   const [year, setYear] = useState("");
   const [month, setMonth] = useState("");
   const [day, setDay] = useState("");
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState("");  
+
 
   const { eventId } = useParams();
   const navigate = useNavigate();
@@ -35,6 +36,8 @@ function EditEventPage() {
       })
       .catch((error) => console.log(error));
   }, [eventId]);
+
+  
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
