@@ -309,7 +309,9 @@ function DiscoverEventsPage() {
           </div>
         </form>
         <div>
-            <CreateEventPage createEvents={getAllEvents}></CreateEventPage>
+        <Link  to={"/events/create"}>
+        Create Event
+        </Link>
         </div>       
       </div>
       <div id="eachPersonContainer">

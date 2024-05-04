@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const API_URL = "http://localhost:5005";
 
@@ -15,7 +15,9 @@ function CreateEventPage(props) {
   const [day, setDay] = useState("");
   const [city, setCity] = useState("");
 
-  useEffect(() => {
+  const navigate = useNavigate()
+  
+  /*useEffect(() => {
     axios
       .post(`${API_URL}/api/meetups`)
       .then((response) => {
@@ -30,17 +32,20 @@ function CreateEventPage(props) {
         setCity("");
         // Invoke the callback function coming through the props
         // from the ProjectDetailsPage, to refresh the project details
-        props.refreshProject();
+        props.createEvents();
       })
       .catch((error) => console.log(error));
-  });
+  }); we do not want that we have empty fields when the page renders in the beginning but we want we are 
+  clicking on habdleformsubmit*/
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const requestBody = { name, profile_image_url, interest, description, date: { $y: year, $m: month, $d: day }, city };
 
-    axios.put(`${import.meta.env.VITE_API_URL}/api/meetups/${eventId}`, requestBody).then((response) => {
-      navigate(`/events/${eventId}`);
+    axios.post(`${import.meta.env.VITE_API_URL}/api/meetups/`, requestBody).then((response) => {
+      console.log("created the event",response.data)
+      //props.getAllEvents()
+      navigate(`/discover/events`);
     });
   };
 
