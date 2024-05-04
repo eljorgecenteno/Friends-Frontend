@@ -36,12 +36,11 @@ function EditEventPage() {
       })
       .catch((error) => console.log(error));
   }, [eventId]);
-
   
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    const requestBody = { name, profile_image_url, interest, description, date: { $y: year, $m: month, $d: day } };
+    const requestBody = { name, profile_image_url, interest, description, date: { $y: year, $m: month, $d: day }, city };
 
     /*axios.put(`${API_URL}/api/meetups/${eventId}`, requestBody).then((response) => {
       navigate(`/events/${eventId}`);

@@ -8,6 +8,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import eventsService from "../../services/events.service";
+import CreateEventPage from "./CreateEventPage";
 
 function DiscoverEventsPage() {
   const [allEvents, setAllEvents] = useState([]);
@@ -307,6 +308,9 @@ function DiscoverEventsPage() {
             </button>
           </div>
         </form>
+        <div>
+            <CreateEventPage createEvents={getAllEvents}></CreateEventPage>
+        </div>       
       </div>
       <div id="eachPersonContainer">
         {allEvents &&
