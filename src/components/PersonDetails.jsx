@@ -2,7 +2,7 @@ import React from "react";
 import "./PersonDetails.css";
 
 function PersonDetails({ person }) {
-  const { name, age, profile_image_url, interest, motto, events, city } = person;
+  const { name, age, profile_image_url, interest, description, events, city } = person;
 
   return (
     <div id="container">
@@ -28,17 +28,24 @@ function PersonDetails({ person }) {
             <p>{interest.join(", ")}</p>
           </div>
           <div id="motto">
-            <p>Motto:</p>
-            <p style={{ fontSize: "25px" }}>{motto}</p>
+            <p>Description: </p>
+            <span>&nbsp;</span>
+            <p style={{ fontSize: "25px" }}>{description}</p>
           </div>
           <div id="events">
             <p>Events:</p>
+            <span>&nbsp;</span>
             <p>
-              {events.map((oneMeetup) => {
-                return oneMeetup.name;
+              {events.map((oneMeetup, index) => {
+                if (index < events.length - 1) {
+                  return `${oneMeetup.name}, `;
+                }
+                if (index === events.length - 1) {
+                  return `${oneMeetup.name} `;
+                }
               })}
             </p>
-          </div>          
+          </div>
         </div>
       </section>
     </div>

@@ -2,6 +2,8 @@ import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { Button } from "@mui/material";
+import "./CreateEventPage.css"
 
 const API_URL = "http://localhost:5005";
 
@@ -15,8 +17,8 @@ function CreateEventPage(props) {
   const [day, setDay] = useState("");
   const [city, setCity] = useState("");
 
-  const navigate = useNavigate()
-  
+  const navigate = useNavigate();
+
   /*useEffect(() => {
     axios
       .post(`${API_URL}/api/meetups`)
@@ -43,8 +45,7 @@ function CreateEventPage(props) {
     const requestBody = { name, profile_image_url, interest, description, date: { $y: year, $m: month, $d: day }, city };
 
     axios.post(`${import.meta.env.VITE_API_URL}/api/meetups/`, requestBody).then((response) => {
-      console.log("created the event",response.data)
-      //props.getAllEvents()
+      console.log("created the event", response.data);
       navigate(`/discover/events`);
     });
   };
@@ -79,7 +80,11 @@ function CreateEventPage(props) {
         <label>City:</label>
         <input type="text" name="city" value={city} onChange={(e) => setCity(e.target.value)} />
 
-        <button type="submit">Create Event</button>
+        <div className="button">
+          <Button type="submit" variant="contained" style={{ backgroundColor: "#21b6ae" }}>
+            Create Event
+          </Button>
+        </div>
       </form>
     </div>
   );

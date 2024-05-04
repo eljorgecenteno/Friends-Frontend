@@ -7,6 +7,7 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
+import { Button } from "@mui/material";
 import eventsService from "../../services/events.service";
 import CreateEventPage from "./CreateEventPage";
 
@@ -309,10 +310,10 @@ function DiscoverEventsPage() {
           </div>
         </form>
         <div>
-        <Link  to={"/events/create"}>
-        Create Event
-        </Link>
-        </div>       
+          <Button variant="contained" style={{backgroundColor: "#21b6ae"}} >
+            <Link to={"/events/create"}>Create Event</Link>
+          </Button>
+        </div>
       </div>
       <div id="eachPersonContainer">
         {allEvents &&
