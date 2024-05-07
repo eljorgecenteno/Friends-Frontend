@@ -6,15 +6,13 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { AuthContext } from "../context/auth.context";
 
-
-
 function EventDetails({ meetup, getEvent }) {
   const { name, profile_image_url, interest, description, date, opinions, persons, city, _id } = meetup;
 
-  const [newComent, setNewcoment] =useState(false)
-  const [allOpinions, setAllOpinions] =useState([])
-  const [comment, setComent] =useState("")
-  const [currentUser, setCurrentUser] =useState("")
+  const [newComent, setNewcoment] = useState(false);
+  const [allOpinions, setAllOpinions] = useState([]);
+  const [comment, setComent] = useState("");
+  const [currentUser, setCurrentUser] = useState("");
   const { eventId } = useParams();
   const navigate = useNavigate();
 
@@ -38,44 +36,39 @@ function EventDetails({ meetup, getEvent }) {
     });
   }
 
-  function addOpinion(){
-setNewcoment(true)
+  function addOpinion() {
+    setNewcoment(true);
   }
 
-  const handleSubmit = (e)=>{
-
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    const commentObj = {description: comment, event: meetup._id, person: user._id}
-   
-    
-    axios.post(`${import.meta.env.VITE_API_URL}/api/opinions`, commentObj)
-    .then((res)=>{
-     return  axios.get(`${import.meta.env.VITE_API_URL}/api/opinions`)
-     
-    })
-    .then((allOpinions) => {
-      setAllOpinions(allOpinions.data);
-      
-    })
-    .catch((err)=>{
-      console.log(err)
-    })
-    }
-    useEffect(() => {
-      axios.get(`${import.meta.env.VITE_API_URL}/api/persons/${user._id}`).then((currentUser) => {
-        setCurrentUser(currentUser.data)
-        console.log(currentUser.data)
-      });
-    }, []);
+    const commentObj = { description: comment, event: meetup._id, person: user._id };
 
-    useEffect(() => {
-      axios.get(`${import.meta.env.VITE_API_URL}/api/opinions`).then((allOpinions) => {
+    axios
+      .post(`${import.meta.env.VITE_API_URL}/api/opinions`, commentObj)
+      .then((res) => {
+        return axios.get(`${import.meta.env.VITE_API_URL}/api/opinions`);
+      })
+      .then((allOpinions) => {
         setAllOpinions(allOpinions.data);
-        
+      })
+      .catch((err) => {
+        console.log(err);
       });
-    }, []);
+  };
+  useEffect(() => {
+    axios.get(`${import.meta.env.VITE_API_URL}/api/persons/${user._id}`).then((currentUser) => {
+      setCurrentUser(currentUser.data);
+      console.log(currentUser.data);
+    });
+  }, []);
 
+  useEffect(() => {
+    axios.get(`${import.meta.env.VITE_API_URL}/api/opinions`).then((allOpinions) => {
+      setAllOpinions(allOpinions.data);
+    });
+  }, []);
 
   return (
     <div id="container">
@@ -92,24 +85,27 @@ setNewcoment(true)
               Join
             </Button>
           </div>
-          {currentUser.isAdmin && <div><div id="button">
-            <Link to={`/events/edit/${eventId}`}>
-              <Button variant="contained">Edit</Button>
-            </Link>
-          </div>
-          <div id="button">
-            <Button variant="contained" onClick={deleteEvent}>
-              Delete
-            </Button>
-          </div></div>}
+          {currentUser.isAdmin && (
+            <div className="admin-buttons">
+              <div id="button">
+                <Link to={`/events/edit/${eventId}`}>
+                  <Button variant="contained">Edit</Button>
+                </Link>
+              </div>
+              <div id="button">
+                <Button variant="contained" onClick={deleteEvent}>
+                  Delete
+                </Button>
+              </div>
+            </div>
+          )}
           <br />
-          
         </div>
         <div id="city">
           <p>City:</p>
           <p>{city}</p>
         </div>
-        <div id="city">
+        <div id="interests">
           <p>Date:</p>
           <p>{`${date.$d}-${date.$m}-${date.$y}`}</p>
         </div>
@@ -117,36 +113,54 @@ setNewcoment(true)
           <p>Interest:</p>
           <p>{interest}</p>
         </div>
-        {persons && <p>All Attending:</p>}
-          <ol>
-            {persons &&
-              persons.map((person, index) => {
-                return <li key={person._id}>{person.name}</li>;
-              })}
-          </ol>
         <div id="interests">
-          <p>Opinions:</p>
+          <p>Description:</p>
+          <p>{description}</p>
+        </div>
+        {persons && <p id="all-attending">All Attending:</p>}
+        <ol>
+          {persons &&
+            persons.map((person, index) => {
+              return (
+                <div className="attendees">
+                  <li key={person._id}>{person.name}</li>
+                </div>
+              );
+            })}
+        </ol>
+        <div id="opinions">
+          <p className="opinion">Opinions:</p>
           <p>
             {opinions.map((oneOpinion) => {
-              return oneOpinion.description;
+              return <div className="opinion">oneOpinion.description</div>
             })}
-          </p>
-          <button onClick={addOpinion}>Add Opinion</button>
+          </p>          
+          <button onClick={addOpinion} className="button-8">Add Opinion</button>
         </div>
-        
-        {newComent && <form> <label className="each-input-sign-up-page">
-          <textarea onChange={(e) => setComent(e.target.value)} id="description" placeholder="Write your comment here" name="description" rows="4" cols="50"></textarea>
-        </label> <button onClick={handleSubmit}>Send comment</button></form>}
+
+        {newComent && (
+          <form>
+            {" "}
+            <label className="each-input-sign-up-page">
+              <textarea onChange={(e) => setComent(e.target.value)} id="description" placeholder="Write your comment here" name="description" rows="4" cols="50"></textarea>
+            </label>{" "}
+            <button onClick={handleSubmit}>Send comment</button>
+          </form>
+        )}
         <p>
-  {allOpinions && allOpinions.map(eachOpinion => {
-    console.log(eachOpinion)
-    if (eachOpinion.event._id === eventId) {
-      return <p key={eachOpinion._id}>{eachOpinion.person.name} : {eachOpinion.description}</p>
-    } 
-  })}
-</p>
+          {allOpinions &&
+            allOpinions.map((eachOpinion) => {
+              console.log(eachOpinion);
+              if (eachOpinion.event._id === eventId) {
+                return (
+                  <p className="opinion-displayed"key={eachOpinion._id}>
+                    {eachOpinion.person.name}: {eachOpinion.description}
+                  </p>
+                );
+              }
+            })}
+        </p>
       </section>
-    
     </div>
   );
 }
