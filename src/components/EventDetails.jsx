@@ -14,6 +14,7 @@ function EventDetails({ meetup, getEvent }) {
   const [newComent, setNewcoment] =useState(false)
   const [allOpinions, setAllOpinions] =useState([])
   const [comment, setComent] =useState("")
+  const [currentUser, setCurrentUser] =useState("")
   const { eventId } = useParams();
   const navigate = useNavigate();
 
@@ -21,7 +22,7 @@ function EventDetails({ meetup, getEvent }) {
 
   const deleteEvent = () => {
     axios
-      .delete(`${import.meta.env.VITE_API_URL}api/meetups/${eventId}`)
+      .delete(`${import.meta.env.VITE_API_URL}/api/meetups/${eventId}`)
       .then(() => {
         navigate("/discover/events");
       })
@@ -61,7 +62,12 @@ setNewcoment(true)
       console.log(err)
     })
     }
-
+    useEffect(() => {
+      axios.get(`${import.meta.env.VITE_API_URL}/api/persons/${user._id}`).then((currentUser) => {
+        setCurrentUser(currentUser.data)
+        console.log(currentUser.data)
+      });
+    }, []);
 
     useEffect(() => {
       axios.get(`${import.meta.env.VITE_API_URL}/api/opinions`).then((allOpinions) => {
@@ -86,7 +92,7 @@ setNewcoment(true)
               Join
             </Button>
           </div>
-          <div id="button">
+          {currentUser.isAdmin && <div><div id="button">
             <Link to={`/events/edit/${eventId}`}>
               <Button variant="contained">Edit</Button>
             </Link>
@@ -95,7 +101,7 @@ setNewcoment(true)
             <Button variant="contained" onClick={deleteEvent}>
               Delete
             </Button>
-          </div>
+          </div></div>}
           <br />
           
         </div>
@@ -135,7 +141,7 @@ setNewcoment(true)
   {allOpinions && allOpinions.map(eachOpinion => {
     console.log(eachOpinion)
     if (eachOpinion.event._id === eventId) {
-      return <p key={eachOpinion.person._id}>{eachOpinion.person.name} : {eachOpinion.description}</p>
+      return <p key={eachOpinion._id}>{eachOpinion.person.name} : {eachOpinion.description}</p>
     } 
   })}
 </p>

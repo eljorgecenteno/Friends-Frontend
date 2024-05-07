@@ -174,9 +174,9 @@ function DiscoverEventsPage() {
       } else if (oneEvent.date.$y > startDate.$y) {
         earliestDateAproval = true;
       } else if (oneEvent.date.$y === startDate.$y) {
-        if (oneEvent.date.$m > startDate.$M) {
+        if (oneEvent.date.$m > startDate.$M -1) {
           earliestDateAproval = true;
-        } else if (oneEvent.date.$m === startDate.$M) {
+        } else if (oneEvent.date.$m === startDate.$M -1) {
           if (oneEvent.date.$d > startDate.$D) {
             earliestDateAproval = true;
           } else if (oneEvent.date.$d === startDate.$D) {
@@ -193,7 +193,7 @@ function DiscoverEventsPage() {
       } else if (oneEvent.date.$y === endDate.$y) {
         if (oneEvent.date.$m < endDate.$M) {
           latestDateAproval = true;
-        } else if (oneEvent.date.$m === endDate.$M) {
+        } else if (oneEvent.date.$m === endDate.$M +1) {
           if (oneEvent.date.$d < endDate.$D) {
             latestDateAproval = true;
           } else if (oneEvent.date.$d === endDate.$D) {
@@ -327,7 +327,7 @@ function DiscoverEventsPage() {
 
                   <h3> {eachEvent.city}</h3>
 
-                  <p>{`${eachEvent.date?.$d}/${eachEvent.date?.$m + 1}/${eachEvent.date?.$y}`}</p>
+                  <p>{`${eachEvent.date?.$d}/${eachEvent.date?.$m}/${eachEvent.date?.$y}`}</p>
                   <h4> {`Theme: ${eachEvent.interest}`}</h4>
 
                   <p>{eachEvent.description}</p>

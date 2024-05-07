@@ -16,7 +16,7 @@ function CreateEventPage(props) {
   const [month, setMonth] = useState("");
   const [day, setDay] = useState("");
   const [city, setCity] = useState("");
-
+  const [imageUrl, setImageUrl] = useState("https://www.shutterstock.com/image-vector/upcoming-events-isolated-on-white-260nw-1538520572.jpg")
   const navigate = useNavigate();
 
   /*useEffect(() => {
@@ -39,10 +39,26 @@ function CreateEventPage(props) {
       .catch((error) => console.log(error));
   }); we do not want that we have empty fields when the page renders in the beginning but we want we are 
   clicking on habdleformsubmit*/
-
+  const handleFileUpload = (e) => {
+    console.log("The file to be uploaded is: ", e.target.files[0]);
+    const uploadData = new FormData();
+    // imageUrl => this name has to be the same as in the model since we pass
+    // req.body to .create() method when creating a new movie in '/api/movies' POST route
+    uploadData.append("imageUrl", e.target.files[0]);
+    axios
+      .post(`${import.meta.env.VITE_API_URL}/api/upload`, uploadData)
+      .then((response) => {
+        console.log("response is: ", response);
+        // response carries "fileUrl" which we can use to update the state
+        //setImageUrl(response.data.fileUrl);
+        console.log(response.data.fileUrl);
+        setImageUrl(response.data.fileUrl);
+      })
+      .catch((err) => console.log("Error while uploading the file: ", err));
+  };
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    const requestBody = { name, profile_image_url, interest, description, date: { $y: year, $m: month, $d: day }, city };
+    const requestBody = { name, profile_image_url: imageUrl, interest, description, date: { $y: year, $m: month, $d: day }, city };
 
     axios.post(`${import.meta.env.VITE_API_URL}/api/meetups/`, requestBody).then((response) => {
       console.log("created the event", response.data);
@@ -67,19 +83,54 @@ function CreateEventPage(props) {
 
         <label>Profile Image Url:</label>
         <input type="text" name="profile_image_url" value={profile_image_url} onChange={(e) => setProfile_image_url(e.target.value)} />
-
-        <label>Interest:</label>
-        <input type="text" name="interest" value={interest} onChange={(e) => setInterest(e.target.value)} />
-
+        <label className="each-input-sign-up-page">
+          Profile image
+          <input
+            onChange={(e) => {
+              handleFileUpload(e);
+            }}
+            type="file"
+            placeholder="Choose file"
+          />
+        </label>
+        <label>Thema:</label>
+       
+        <select name="cityselected" defaultValue="" className="each-input-sign-up-page" onChange={(e) => setInterest(e.target.value)}>
+          <option value="" disabled hidden>
+            Choose Thema of the event
+          </option>
+          <option value="Chess">Chess</option>
+          <option value="Cinema">Cinema</option>
+          <option value="Poker">Poker</option>
+          <option value="Theather">Theather</option>
+          <option value="Party">Party</option>
+          <option value="Restaurants">Restaurants</option>
+          <option value="Hiking">Hiking</option>
+          <option value="Football">Football</option>
+          <option value="Movie Night">Movie Night</option>
+          <option value="Running">Running</option>
+          <option value="Language exchange">Language exchange</option>
+          <option value="Trips">Trips</option>
+          <option value="Basketball">Basketball</option>
+        </select>
         <label>Description:</label>
-        <input type="text" name="description" value={description} onChange={(e) => setDescription(e.target.value)} />
-
+        <label className="each-input-sign-up-page">
+        <textarea onChange={(e) => setDescription(e.target.value)} id="description" placeholder="Write a description about the event" name="description" rows="4" cols="50"></textarea>
+        </label>
         <label>Date:</label>
         <input type="date" name="date" onChange={setDate} />
 
         <label>City:</label>
-        <input type="text" name="city" value={city} onChange={(e) => setCity(e.target.value)} />
-
+        <select name="cityselected" defaultValue="" className="each-input-sign-up-page" onChange={(e) => setCity(e.target.value)}>
+          <option value="" disabled hidden>
+            Choose your city
+          </option>
+          <option value="London">London</option>
+          <option value="Paris">Paris</option>
+          <option value="Madrid">Madrid</option>
+          <option value="Berlin">Berlin</option>
+          <option value="Athens">Athens</option>
+        </select>
         <div className="button">
           <Button type="submit" variant="contained" style={{ backgroundColor: "#21b6ae" }}>
             Create Event
