@@ -77,17 +77,20 @@
 
 .person-picture{
     margin-top: 10px;
-    height:55vh;
+    height:62vh;
     width: 35vw;
     border-radius: 90%;
     margin-bottom: 20px;    
 }
 
 #header {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    font-size: 40px;
-    font-family: Arial, Helvetica, sans-serif;
+    #header {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: 40px;
+        font-family: Arial, Helvetica, sans-serif;
+        justify-content: center;
+    }
 }
 #email {
     display: flex;

@@ -122,13 +122,13 @@ function DiscoverEventsPage() {
       selectedInterests.push("Football");
     }
     if (MovieNight === true) {
-      selectedInterests.push("Movie night");
+      selectedInterests.push("Movie Night");
     }
     if (Running === true) {
       selectedInterests.push("Running");
     }
     if (LanguageExchange === true) {
-      selectedInterests.push("Language exchange");
+      selectedInterests.push("Language Exchange");
     }
     if (Trips === true) {
       selectedInterests.push("Trips");

@@ -122,14 +122,14 @@ function EventDetails({ meetup, getEvent }) {
           {persons &&
             persons.map((person, index) => {
               return (
-                <div className="attendees">
-                  <li key={person._id}>{person.name}</li>
-                </div>
+         
+                 <Link style={{ textDecoration: 'none', color: 'black' }}to={`/persons/${person._id}`}><p id="each-attending-person" >{person.name}</p></Link> 
+                
               );
             })}
         </ol>
-        <div id="opinions">
-          <p className="opinion">Opinions:</p>
+        <div id="opinions"><div >
+          <p className="opinion-text">Opinions:</p>
           <p>
             {opinions.map((oneOpinion) => {
               return <div className="opinion">oneOpinion.description</div>
@@ -141,10 +141,10 @@ function EventDetails({ meetup, getEvent }) {
         {newComent && (
           <form>
             {" "}
-            <label className="each-input-sign-up-page">
-              <textarea onChange={(e) => setComent(e.target.value)} id="description" placeholder="Write your comment here" name="description" rows="4" cols="50"></textarea>
+            <label className="each-input-event-details-page">
+              <textarea id="comment-text-area"onChange={(e) => setComent(e.target.value)} style={{ width: "1000px", height: "80px" }}id="description" placeholder="Write your comment here" name="description" rows="4" cols="50"></textarea>
             </label>{" "}
-            <button onClick={handleSubmit}>Send comment</button>
+            <button id="send-comment-buttom"onClick={handleSubmit}>Send comment</button>
           </form>
         )}
         <p>
@@ -159,7 +159,8 @@ function EventDetails({ meetup, getEvent }) {
                 );
               }
             })}
-        </p>
+        </p></div>
+        
       </section>
     </div>
   );

@@ -136,7 +136,7 @@ function SignUpPage() {
       selectedInterests.push("Running");
     }
     if (LanguageExchange === true) {
-      selectedInterests.push("Language exchange");
+      selectedInterests.push("Language Exchange");
     }
     if (Trips === true) {
       selectedInterests.push("Trips");
