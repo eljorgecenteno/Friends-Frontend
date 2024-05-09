@@ -23,7 +23,7 @@ function EditEventPage() {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/api/meetups/${eventId}`)
+      .get(`${import.meta.env.VITE_API_URL}/api/meetups/${eventId}`)
       .then((response) => {
         const oneEvent = response.data;
         setName(oneEvent.name);
