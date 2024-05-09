@@ -14,6 +14,7 @@ function EditEventPage() {
   const [year, setYear] = useState("");
   const [month, setMonth] = useState("");
   const [day, setDay] = useState("");
+  const [error, setError] = useState("");
   const [city, setCity] = useState("");  
   const [imageUrl, setImageUrl] = useState("https://www.shutterstock.com/image-vector/upcoming-events-isolated-on-white-260nw-1538520572.jpg")
 
@@ -22,7 +23,7 @@ function EditEventPage() {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/api/meetups/${eventId}`)
+      .get(`${import.meta.env.VITE_API_URL}/api/meetups/${eventId}`)
       .then((response) => {
         const oneEvent = response.data;
         setName(oneEvent.name);
@@ -52,7 +53,7 @@ function EditEventPage() {
         console.log(response.data.fileUrl);
         setImageUrl(response.data.fileUrl);
       })
-      .catch((err) => console.log("Error while uploading the file: ", err));
+      .catch((err) => setError(err.response.data.message));
   };
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -134,6 +135,7 @@ function EditEventPage() {
 
         <button type="submit">Update Event</button>
       </form>
+      <div>{error && <h2>Error: {error}</h2> }</div>
     </div>
   );
 }

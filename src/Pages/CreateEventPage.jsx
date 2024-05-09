@@ -15,6 +15,7 @@ function CreateEventPage(props) {
   const [year, setYear] = useState("");
   const [month, setMonth] = useState("");
   const [day, setDay] = useState("");
+  const [error, setError] = useState("");
   const [city, setCity] = useState("");
   const [imageUrl, setImageUrl] = useState("https://www.shutterstock.com/image-vector/upcoming-events-isolated-on-white-260nw-1538520572.jpg")
   const navigate = useNavigate();
@@ -60,10 +61,15 @@ function CreateEventPage(props) {
     e.preventDefault();
     const requestBody = { name, profile_image_url: imageUrl, interest, description, date: { $y: year, $m: month, $d: day }, city };
 
-    axios.post(`${import.meta.env.VITE_API_URL}/api/meetups/`, requestBody).then((response) => {
+    axios.post(`${import.meta.env.VITE_API_URL}/api/meetups/`, requestBody)
+    .then((response) => {
       console.log("created the event", response.data);
       navigate(`/discover/events`);
-    });
+    })
+    .catch((err)=>{
+      console.log(err.response.data.message);
+      setError(err.response.data.message);
+    })
   };
 
   function setDate(e) {
@@ -82,7 +88,7 @@ function CreateEventPage(props) {
         <input type="text" name="name" value={name} onChange={(e) => setName(e.target.value)} />
 
         <label>Profile Image Url:</label>
-        <input type="text" name="profile_image_url" value={profile_image_url} onChange={(e) => setProfile_image_url(e.target.value)} />
+       
         <label className="each-input-sign-up-page">
           Profile image
           <input
@@ -137,6 +143,7 @@ function CreateEventPage(props) {
           </Button>
         </div>
       </form>
+      {error && <h2>Error: {error}</h2>}
     </div>
   );
 }

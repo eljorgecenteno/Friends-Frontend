@@ -24,7 +24,7 @@
 
 .person-picture{
     margin-top: 10px;
-    height:55vh;
+    height:62vh;
     width: 35vw;
     border-radius: 90%;
     margin-bottom: 20px;    
@@ -39,9 +39,13 @@
     padding: 5px;
     margin: 9px;
     margin-bottom: 20px;
-    margin-top: 30px;
 }
-
+#each-attending-person {
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    margin: 5px;
+  }
 #interests {
     display: flex;
     justify-content: space-between;
@@ -58,23 +62,26 @@
     flex-direction: column;
     justify-content: space-between;
     font-size: 25px;
-    background-color: rgb(226, 226, 188);
+    background-color: rgb(189, 189, 174);
     border-radius:10px;
-    padding: 5px;
+    padding: 50px;
     margin: 9px;
     margin-bottom: 20px;
     gap: 10px;
+    width: 79vw;;
+    margin-top: 60px;
 }
 
 .opinion-displayed {
     display: flex;
     justify-content: space-between;
-    font-size: 22px;
-    background-color: rgb(226, 226, 188);
-    border-radius:10px;
+    font-size: 25px;
+    background-color: rgb(255, 255, 255);
+    
     padding: 5px;
-    margin: 9px;
+    margin: 35px;
     margin-bottom: 20px;
+    font-style: bold;
 }
 
 #buttons {
@@ -98,7 +105,7 @@
   cursor: pointer;
   display: inline-block;
   font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
-  font-size: 19px;
+  font-size: 30px;
   font-weight: 400;
   line-height: 1.15385;
   margin: 0;
@@ -152,3 +159,17 @@
     margin-bottom: 10px;
 }
 
+.opinion-text{
+    font-size: 35px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#comment-text-area{
+   margin-left: 200px;
+}
+.each-input-event-details-page{
+    font-size: large;
+}
+#send-comment-buttom{
+    background-color: #39739d;
+    font-size: 20px;
+}
